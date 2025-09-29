@@ -3,6 +3,7 @@ from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from turtlesim.msg import Pose
 from turtlesim.srv import TeleportAbsolute, SetPen
+from std_srvs.srv import Empty
 from std_msgs.msg import String
 import math
 import time
@@ -38,10 +39,6 @@ def get_arrow_points(scale=7.0):
     ]
     
     points.append(None)
-    
-    points.append(head_points[0])
-    points.append(None)
-    
     points.extend(head_points)
     
     return points
@@ -74,52 +71,59 @@ def get_star_points(R=4.5):
     
     return points
 
-def get_flower_points(R=4.5, num_petals=5, num_segments=50):
+def get_hotairballoon_points():
     points = []
     center_x = 5.5
     center_y = 5.5
     
-    circle_r = 0.5 * R / 4.5 
+    balloon_cx = center_x
+    balloon_cy = center_y + 1.5
+    balloon_radius = 1.6
     
-    points.append((float(center_x + circle_r), float(center_y)))
-
-    for i in range(num_segments + 1):
-        angle = 2 * math.pi * i / num_segments
-        x = center_x + circle_r * math.cos(angle)
-        y = center_y + circle_r * math.sin(angle)
+    num_points = 24
+    for i in range(num_points + 1):
+        angle = i * 2 * math.pi / num_points
+        x = balloon_cx + balloon_radius * math.cos(angle)
+        y = balloon_cy + balloon_radius * math.sin(angle)
         points.append((float(x), float(y)))
     
-    points.append(None) 
-
-    petal_len = 1.5 * R / 4.5 
+    points.append(None)
     
-    for i in range(num_petals):
-        angle = i * 2 * math.pi / num_petals
-        
-        base_x1 = center_x + circle_r * math.cos(angle + 0.3)
-        base_y1 = center_y + circle_r * math.sin(angle + 0.3)
-        base_x2 = center_x + circle_r * math.cos(angle - 0.3)
-        base_y2 = center_y + circle_r * math.sin(angle - 0.3)
-        
-        tip_x = center_x + (circle_r + petal_len) * math.cos(angle)
-        tip_y = center_y + (circle_r + petal_len) * math.sin(angle)
-
-        points.append(None) 
-        points.append((float(base_x1), float(base_y1)))
-
-        petal_path = [
-            (base_x1, base_y1),
-            (tip_x, tip_y),
-            (base_x2, base_y2),
-            (base_x1, base_y1)
-        ]
-        points.extend(petal_path)
-        
-        points.append(None) 
-        
-
+    basket_width = 0.7
+    basket_height = 0.45
+    basket_cx = center_x
+    basket_cy = center_y - 1.3
+    
+    basket_left = basket_cx - basket_width / 2
+    basket_right = basket_cx + basket_width / 2
+    basket_top = basket_cy + basket_height / 2
+    basket_bottom = basket_cy - basket_height / 2
+    
+    points.extend([
+        (basket_left, basket_top),
+        (basket_right, basket_top),
+        (basket_right, basket_bottom),
+        (basket_left, basket_bottom),
+        (basket_left, basket_top)
+    ])
+    
+    points.append(None)
+    
+    rope_attach_y = balloon_cy - balloon_radius * 0.866
+    
+    points.extend([
+        (balloon_cx - balloon_radius * 0.5, rope_attach_y),
+        (basket_left + 0.05, basket_top)
+    ])
+    
+    points.append(None)
+    
+    points.extend([
+        (balloon_cx + balloon_radius * 0.5, rope_attach_y),
+        (basket_right - 0.05, basket_top)
+    ])
+    
     return points
-
 
 class TurtleCommander(Node):
     def __init__(self):
@@ -131,12 +135,15 @@ class TurtleCommander(Node):
         self.cmd_vel_pub = self.create_publisher(Twist, '/turtle1/cmd_vel', 10)
         self.teleport_client = self.create_client(TeleportAbsolute, '/turtle1/teleport_absolute')
         self.pen_client = self.create_client(SetPen, '/turtle1/set_pen')
+        self.clear_client = self.create_client(Empty, '/clear')
 
         self.get_logger().info("Waiting for services...")
         while not self.teleport_client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('Teleport service not available, waiting again...')
         while not self.pen_client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('SetPen service not available, waiting again...')
+        while not self.clear_client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info('Clear service not available, waiting again...')
         self.get_logger().info("Services ready!")
 
         self.current_pose = None
@@ -145,60 +152,77 @@ class TurtleCommander(Node):
         self.state = 'idle'
         self.target_x = 0.0
         self.target_y = 0.0
-        
-        self.prev_x = 0.0
-        self.prev_y = 0.0
+        self.pen_down = False
         self.stuck_counter = 0
+        self.last_distance = 0.0
+        self.progress_check_timer = 0
 
-        self.create_timer(0.02, self.control_loop) 
+        self.create_timer(0.01, self.control_loop)
 
     def pose_callback(self, msg):
-        if self.current_pose:
-            self.prev_x = self.current_pose.x
-            self.prev_y = self.current_pose.y
         self.current_pose = msg
 
     def shape_callback(self, msg):
-        if self.state != 'idle' and msg.data != '0':
+        shape = msg.data.strip()
+        
+        if shape == '0':
+            self.stop_drawing()
+            return
+        elif shape == '4':
+            self.clear_screen()
+            return
+        
+        if self.state != 'idle':
             self.get_logger().warn("Turtle is currently moving. Please wait or send '0' to stop.")
             return
 
-        shape = msg.data.strip()
-        if shape == '0':
-            self.stop_drawing()
-        else:
-            self.draw_shape(shape)
+        self.draw_shape(shape)
 
     def draw_shape(self, shape):
         if shape == '1':
             self.path_points = get_arrow_points()
-            self.get_logger().info("Starting Arrow (1)")
+            self.get_logger().info("Starting Arrow")
         elif shape == '2':
             self.path_points = get_star_points()
-            self.get_logger().info("Starting Star (2)")
+            self.get_logger().info("Starting Star")
         elif shape == '3':
-            self.path_points = get_flower_points()
-            self.get_logger().info("Starting Flower (3)")
+            self.path_points = get_hotairballoon_points()
+            self.get_logger().info("Starting Hot Air Balloon")
         else:
-            self.get_logger().warn("Unknown shape command received.")
+            self.get_logger().warn(f"Unknown shape command: '{shape}'")
             return
 
         x0, y0 = self.path_points[0]
-        x1, y1 = self.path_points[1]
-        start_angle = math.atan2(y1 - y0, x1 - x0)
-
-        self.set_pen_request(0, 0, 0, 3, 1)
         
-        self.teleport_client.call_async(self._create_teleport_request(x0, y0, start_angle))
+        self.set_pen(off=True)
+        time.sleep(0.05)
         
-        time.sleep(0.1) 
-
-        self.set_pen_request(0, 0, 0, 3, 0)
+        self.teleport_client.call_async(self._create_teleport_request(x0, y0, 0.0))
+        time.sleep(0.1)
+        
+        self.set_pen(off=False)
+        self.pen_down = True
+        time.sleep(0.05)
 
         self.point_index = 1
         self.target_x, self.target_y = self.path_points[self.point_index]
         self.state = 'moving'
         self.stuck_counter = 0
+        self.progress_check_timer = 0
+
+    def clear_screen(self):
+        if self.state != 'idle':
+            self.get_logger().warn("Cannot clear while drawing. Send '0' to stop first.")
+            return
+            
+        self.get_logger().info("Clearing screen...")
+        
+        req = Empty.Request()
+        future = self.clear_client.call_async(req)
+        
+        time.sleep(0.1)
+        self.set_pen(off=True)
+        self.teleport_client.call_async(self._create_teleport_request(5.5, 5.5, 0.0))
 
     def _create_teleport_request(self, x, y, theta=0.0):
         req = TeleportAbsolute.Request()
@@ -207,30 +231,34 @@ class TurtleCommander(Node):
         req.theta = float(theta)
         return req
 
-    def set_pen_request(self, r, g, b, width, off):
+    def set_pen(self, r=0, g=0, b=0, width=3, off=False):
         req = SetPen.Request()
         req.r = r
         req.g = g
         req.b = b
         req.width = width
-        req.off = off
+        req.off = 1 if off else 0
         self.pen_client.call_async(req)
-
-    def check_for_stuck_and_recover(self, current_twist):
         
-        if math.sqrt((self.current_pose.x - self.prev_x)**2 + (self.current_pose.y - self.prev_y)**2) < 0.005:
-            self.stuck_counter += 1
-        else:
-            self.stuck_counter = 0
+    def check_stuck_and_recover(self, distance):
+        self.progress_check_timer += 1
+        
+        if self.progress_check_timer > 50:
+            if abs(distance - self.last_distance) < 0.001:
+                self.stuck_counter += 1
+            else:
+                self.stuck_counter = 0
             
-        if self.stuck_counter > 5:
-            self.get_logger().warn("Turtle might be stuck. Attempting recovery.")
-            current_twist.linear.x = 2.0 
-            current_twist.angular.z = current_twist.angular.z * 1.5 
-            self.stuck_counter = 0
-            return True
-        return False
-        
+            if self.stuck_counter > 20:
+                self.get_logger().warn("Turtle appears stuck, attempting recovery...")
+                self.teleport_client.call_async(self._create_teleport_request(self.target_x, self.target_y, 0.0))
+                time.sleep(0.1)
+                self.stuck_counter = 0
+                self.next_point()
+            
+            self.last_distance = distance
+            self.progress_check_timer = 0
+
     def control_loop(self):
         if self.state != 'moving' or not self.current_pose:
             return
@@ -239,9 +267,11 @@ class TurtleCommander(Node):
         dy = self.target_y - self.current_pose.y
         dist = math.sqrt(dx**2 + dy**2)
 
+        self.check_stuck_and_recover(dist)
+
         twist = Twist()
 
-        if dist < 0.05: 
+        if dist < 0.05:
             self.next_point()
             return
 
@@ -249,18 +279,14 @@ class TurtleCommander(Node):
         angle_diff = math.atan2(math.sin(target_angle - self.current_pose.theta),
                                 math.cos(target_angle - self.current_pose.theta))
 
-        angular_vel = 6.0 * angle_diff
-        linear_vel = 4.0 * dist 
+        if abs(angle_diff) > 0.2:
+            twist.angular.z = 3.0 * angle_diff
+            twist.linear.x = 0.3
+        else:
+            twist.angular.z = 1.5 * angle_diff
+            twist.linear.x = 1.8
 
-        twist.angular.z = max(min(angular_vel, 5.0), -5.0)
-        twist.linear.x = max(min(linear_vel, 4.0), 0.0)
-
-        if abs(angle_diff) > 0.5:
-             twist.linear.x = 1.0 
-        elif abs(angle_diff) > 0.1:
-             twist.linear.x = min(twist.linear.x, 2.0)
-        
-        self.check_for_stuck_and_recover(twist)
+        twist.angular.z = max(min(twist.angular.z, 4.0), -4.0)
 
         self.cmd_vel_pub.publish(twist)
 
@@ -271,27 +297,46 @@ class TurtleCommander(Node):
             return
 
         if self.path_points[self.point_index] is None:
-            if self.path_points[self.point_index - 1] is None:
-                self.set_pen_request(0, 0, 0, 3, 0) 
-            else:
-                self.set_pen_request(0, 0, 0, 3, 1) 
+            if self.pen_down:
+                self.set_pen(off=True)
+                self.pen_down = False
+                time.sleep(0.05)
             
             self.point_index += 1
             if self.point_index >= len(self.path_points):
                 self.finish_drawing()
                 return
+            
+            tx, ty = self.path_points[self.point_index]
+            self.teleport_client.call_async(self._create_teleport_request(tx, ty, 0.0))
+            time.sleep(0.1)
+            
+            self.set_pen(off=False)
+            self.pen_down = True
+            time.sleep(0.05)
+            
+            self.point_index += 1
+            if self.point_index >= len(self.path_points):
+                self.finish_drawing()
+                return
+            
+            self.target_x, self.target_y = self.path_points[self.point_index]
+        else:
+            self.target_x, self.target_y = self.path_points[self.point_index]
 
-        self.target_x, self.target_y = self.path_points[self.point_index]
         self.stuck_counter = 0
+        self.progress_check_timer = 0
 
     def finish_drawing(self):
-        self.set_pen_request(0, 0, 0, 3, 1)
+        self.set_pen(off=True)
+        self.pen_down = False
         self.cmd_vel_pub.publish(Twist())
         self.state = 'idle'
-        self.get_logger().info("Finished drawing")
+        self.get_logger().info("Finished drawing!")
 
     def stop_drawing(self):
-        self.set_pen_request(0, 0, 0, 3, 1)
+        self.set_pen(off=True)
+        self.pen_down = False
         self.cmd_vel_pub.publish(Twist())
         self.state = 'idle'
         self.get_logger().info("Turtle stopped")
