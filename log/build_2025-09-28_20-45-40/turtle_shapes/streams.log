@@ -1,0 +1,21 @@
+[1.997s] Invoking command in '/home/andrew/ros2_ws/build/turtle_shapes': PYTHONPATH=/home/andrew/ros2_ws/build/turtle_shapes/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/andrew/ros2_ws/install/turtle_shapes/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/andrew/ros2_ws/build/turtle_shapes/build --no-deps symlink_data --force
+[2.498s] running develop
+[2.746s] running egg_info
+[2.746s] writing turtle_shapes.egg-info/PKG-INFO
+[2.746s] writing dependency_links to turtle_shapes.egg-info/dependency_links.txt
+[2.747s] writing entry points to turtle_shapes.egg-info/entry_points.txt
+[2.747s] writing requirements to turtle_shapes.egg-info/requires.txt
+[2.747s] writing top-level names to turtle_shapes.egg-info/top_level.txt
+[2.749s] reading manifest file 'turtle_shapes.egg-info/SOURCES.txt'
+[2.781s] writing manifest file 'turtle_shapes.egg-info/SOURCES.txt'
+[2.783s] running build_ext
+[2.783s] Creating /home/andrew/ros2_ws/install/turtle_shapes/lib/python3.10/site-packages/turtle-shapes.egg-link (link to .)
+[2.784s] Installing shape_node script to /home/andrew/ros2_ws/install/turtle_shapes/lib/turtle_shapes
+[2.785s] Installing turtle_commander script to /home/andrew/ros2_ws/install/turtle_shapes/lib/turtle_shapes
+[2.785s] 
+[2.785s] Installed /home/andrew/ros2_ws/build/turtle_shapes
+[2.786s] running symlink_data
+[2.786s] symbolically linking /home/andrew/ros2_ws/build/turtle_shapes/resource/turtle_shapes -> /home/andrew/ros2_ws/install/turtle_shapes/share/ament_index/resource_index/packages
+[2.786s] symbolically linking /home/andrew/ros2_ws/build/turtle_shapes/package.xml -> /home/andrew/ros2_ws/install/turtle_shapes/share/turtle_shapes
+[2.787s] symbolically linking /home/andrew/ros2_ws/build/turtle_shapes/launch/turtle_shapes.launch.py -> /home/andrew/ros2_ws/install/turtle_shapes/share/turtle_shapes/launch
+[2.825s] Invoked command in '/home/andrew/ros2_ws/build/turtle_shapes' returned '0': PYTHONPATH=/home/andrew/ros2_ws/build/turtle_shapes/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/andrew/ros2_ws/install/turtle_shapes/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/andrew/ros2_ws/build/turtle_shapes/build --no-deps symlink_data --force

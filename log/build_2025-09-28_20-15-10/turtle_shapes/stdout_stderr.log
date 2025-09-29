@@ -1,0 +1,57 @@
+running egg_info
+creating ../../build/turtle_shapes/turtle_shapes.egg-info
+writing ../../build/turtle_shapes/turtle_shapes.egg-info/PKG-INFO
+writing dependency_links to ../../build/turtle_shapes/turtle_shapes.egg-info/dependency_links.txt
+writing entry points to ../../build/turtle_shapes/turtle_shapes.egg-info/entry_points.txt
+writing requirements to ../../build/turtle_shapes/turtle_shapes.egg-info/requires.txt
+writing top-level names to ../../build/turtle_shapes/turtle_shapes.egg-info/top_level.txt
+writing manifest file '../../build/turtle_shapes/turtle_shapes.egg-info/SOURCES.txt'
+reading manifest file '../../build/turtle_shapes/turtle_shapes.egg-info/SOURCES.txt'
+writing manifest file '../../build/turtle_shapes/turtle_shapes.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/andrew/ros2_ws/build/turtle_shapes/build
+creating /home/andrew/ros2_ws/build/turtle_shapes/build/lib
+creating /home/andrew/ros2_ws/build/turtle_shapes/build/lib/turtle_shapes
+copying turtle_shapes/turtle_commander.py -> /home/andrew/ros2_ws/build/turtle_shapes/build/lib/turtle_shapes
+copying turtle_shapes/shape_node.py -> /home/andrew/ros2_ws/build/turtle_shapes/build/lib/turtle_shapes
+copying turtle_shapes/__init__.py -> /home/andrew/ros2_ws/build/turtle_shapes/build/lib/turtle_shapes
+running install
+running install_lib
+creating /home/andrew/ros2_ws/install/turtle_shapes/lib/python3.10/site-packages/turtle_shapes
+copying /home/andrew/ros2_ws/build/turtle_shapes/build/lib/turtle_shapes/turtle_commander.py -> /home/andrew/ros2_ws/install/turtle_shapes/lib/python3.10/site-packages/turtle_shapes
+copying /home/andrew/ros2_ws/build/turtle_shapes/build/lib/turtle_shapes/shape_node.py -> /home/andrew/ros2_ws/install/turtle_shapes/lib/python3.10/site-packages/turtle_shapes
+copying /home/andrew/ros2_ws/build/turtle_shapes/build/lib/turtle_shapes/__init__.py -> /home/andrew/ros2_ws/install/turtle_shapes/lib/python3.10/site-packages/turtle_shapes
+byte-compiling /home/andrew/ros2_ws/install/turtle_shapes/lib/python3.10/site-packages/turtle_shapes/turtle_commander.py to turtle_commander.cpython-310.pyc
+byte-compiling /home/andrew/ros2_ws/install/turtle_shapes/lib/python3.10/site-packages/turtle_shapes/shape_node.py to shape_node.cpython-310.pyc
+byte-compiling /home/andrew/ros2_ws/install/turtle_shapes/lib/python3.10/site-packages/turtle_shapes/__init__.py to __init__.cpython-310.pyc
+running install_data
+creating /home/andrew/ros2_ws/install/turtle_shapes/share/ament_index
+creating /home/andrew/ros2_ws/install/turtle_shapes/share/ament_index/resource_index
+creating /home/andrew/ros2_ws/install/turtle_shapes/share/ament_index/resource_index/packages
+copying resource/turtle_shapes -> /home/andrew/ros2_ws/install/turtle_shapes/share/ament_index/resource_index/packages
+copying package.xml -> /home/andrew/ros2_ws/install/turtle_shapes/share/turtle_shapes
+running install_egg_info
+Copying ../../build/turtle_shapes/turtle_shapes.egg-info to /home/andrew/ros2_ws/install/turtle_shapes/lib/python3.10/site-packages/turtle_shapes-0.0.0-py3.10.egg-info
+running install_scripts
+Installing shape_node script to /home/andrew/ros2_ws/install/turtle_shapes/lib/turtle_shapes
+Installing turtle_commander script to /home/andrew/ros2_ws/install/turtle_shapes/lib/turtle_shapes
+writing list of installed files to '/home/andrew/ros2_ws/build/turtle_shapes/install.log'
+running egg_info
+writing ../../build/turtle_shapes/turtle_shapes.egg-info/PKG-INFO
+writing dependency_links to ../../build/turtle_shapes/turtle_shapes.egg-info/dependency_links.txt
+writing entry points to ../../build/turtle_shapes/turtle_shapes.egg-info/entry_points.txt
+writing requirements to ../../build/turtle_shapes/turtle_shapes.egg-info/requires.txt
+writing top-level names to ../../build/turtle_shapes/turtle_shapes.egg-info/top_level.txt
+reading manifest file '../../build/turtle_shapes/turtle_shapes.egg-info/SOURCES.txt'
+writing manifest file '../../build/turtle_shapes/turtle_shapes.egg-info/SOURCES.txt'
+running build
+running build_py
+running install
+running install_lib
+running install_data
+running install_egg_info
+removing '/home/andrew/ros2_ws/install/turtle_shapes/lib/python3.10/site-packages/turtle_shapes-0.0.0-py3.10.egg-info' (and everything under it)
+Copying ../../build/turtle_shapes/turtle_shapes.egg-info to /home/andrew/ros2_ws/install/turtle_shapes/lib/python3.10/site-packages/turtle_shapes-0.0.0-py3.10.egg-info
+running install_scripts
+writing list of installed files to '/home/andrew/ros2_ws/build/turtle_shapes/install.log'

@@ -1,0 +1,18 @@
+[2.937s] Invoking command in '/home/andrew/ros2_ws/build/turtle_shapes': PYTHONPATH=/home/andrew/ros2_ws/build/turtle_shapes/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/andrew/ros2_ws/install/turtle_shapes/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/andrew/ros2_ws/build/turtle_shapes/build --no-deps symlink_data
+[4.083s] running develop
+[4.778s] running egg_info
+[4.779s] writing turtle_shapes.egg-info/PKG-INFO
+[4.780s] writing dependency_links to turtle_shapes.egg-info/dependency_links.txt
+[4.782s] writing entry points to turtle_shapes.egg-info/entry_points.txt
+[4.783s] writing requirements to turtle_shapes.egg-info/requires.txt
+[4.783s] writing top-level names to turtle_shapes.egg-info/top_level.txt
+[4.790s] reading manifest file 'turtle_shapes.egg-info/SOURCES.txt'
+[4.794s] writing manifest file 'turtle_shapes.egg-info/SOURCES.txt'
+[4.799s] running build_ext
+[4.800s] Creating /home/andrew/ros2_ws/install/turtle_shapes/lib/python3.10/site-packages/turtle-shapes.egg-link (link to .)
+[4.804s] Installing shape_node script to /home/andrew/ros2_ws/install/turtle_shapes/lib/turtle_shapes
+[4.805s] Installing turtle_commander script to /home/andrew/ros2_ws/install/turtle_shapes/lib/turtle_shapes
+[4.807s] 
+[4.808s] Installed /home/andrew/ros2_ws/build/turtle_shapes
+[4.808s] running symlink_data
+[4.906s] Invoked command in '/home/andrew/ros2_ws/build/turtle_shapes' returned '0': PYTHONPATH=/home/andrew/ros2_ws/build/turtle_shapes/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/andrew/ros2_ws/install/turtle_shapes/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/andrew/ros2_ws/build/turtle_shapes/build --no-deps symlink_data

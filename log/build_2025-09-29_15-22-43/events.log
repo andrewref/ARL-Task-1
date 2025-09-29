@@ -1,0 +1,73 @@
+[0.000000] (-) TimerEvent: {}
+[0.001466] (turtle_shapes) JobQueued: {'identifier': 'turtle_shapes', 'dependencies': OrderedDict()}
+[0.001820] (turtle_shapes) JobStarted: {'identifier': 'turtle_shapes'}
+[0.097768] (-) TimerEvent: {}
+[0.200433] (-) TimerEvent: {}
+[0.301991] (-) TimerEvent: {}
+[0.404156] (-) TimerEvent: {}
+[0.508095] (-) TimerEvent: {}
+[0.612256] (-) TimerEvent: {}
+[0.714310] (-) TimerEvent: {}
+[0.818234] (-) TimerEvent: {}
+[0.920265] (-) TimerEvent: {}
+[1.024259] (-) TimerEvent: {}
+[1.125991] (-) TimerEvent: {}
+[1.229825] (-) TimerEvent: {}
+[1.333627] (-) TimerEvent: {}
+[1.437170] (-) TimerEvent: {}
+[1.540563] (-) TimerEvent: {}
+[1.644658] (-) TimerEvent: {}
+[1.748723] (-) TimerEvent: {}
+[1.852749] (-) TimerEvent: {}
+[1.957000] (-) TimerEvent: {}
+[2.061349] (-) TimerEvent: {}
+[2.165491] (-) TimerEvent: {}
+[2.266651] (-) TimerEvent: {}
+[2.370039] (-) TimerEvent: {}
+[2.471301] (-) TimerEvent: {}
+[2.575155] (-) TimerEvent: {}
+[2.678727] (-) TimerEvent: {}
+[2.782489] (-) TimerEvent: {}
+[2.887105] (-) TimerEvent: {}
+[2.892295] (turtle_shapes) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/home/andrew/ros2_ws/build/turtle_shapes/build', '--no-deps', 'symlink_data'], 'cwd': '/home/andrew/ros2_ws/build/turtle_shapes', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'andrew', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/andrew', 'OLDPWD': '/home/andrew/ros2_ws', 'ROS_PYTHON_VERSION': '3', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'WSL_DISTRO_NAME': 'Ubuntu-22.04', 'WAYLAND_DISPLAY': 'wayland-0', 'COLCON_PREFIX_PATH': '/home/andrew/ros2_ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'andrew', 'NAME': 'DESKTOP-19K200Q', 'WSL_INTEROP': '/run/WSL/12370_interop', 'PULSE_SERVER': 'unix:/mnt/wslg/PulseServer', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm-256color', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.6.1.0_x64__8wekyb3d8bbwe:/mnt/c/Program Files/Eclipse Adoptium/jdk-21.0.7.6-hotspot/bin:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/nodejs/:/mnt/c/Program Files/Amazon/AWSCLIV2/:/mnt/c/k6-v1.0.0-windows-amd64:/mnt/c/k6-v1.0.0-windows-amd64:/mnt/c/Users/Andrew/AppData/Local/GitHubDesktop/bin:/mnt/d/Microsoft VS Code/bin:/mnt/c/Users/Andrew/AppData/Roaming/npm:/mnt/c/Users/Andrew/AppData/Local/Programs/cursor/resources/app/bin:/mnt/d/Qoder/bin:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000/', 'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'AMENT_PREFIX_PATH': '/home/andrew/ros2_ws/install/turtle_shapes:/opt/ros/humble', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'PWD': '/home/andrew/ros2_ws/build/turtle_shapes', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/andrew/ros2_ws/build/turtle_shapes/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/andrew/ros2_ws/install/turtle_shapes/lib/python3.10/site-packages:/home/andrew/ros2_ws/build/turtle_shapes:/home/andrew/ros2_ws/install/turtle_shapes/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'WSL2_GUI_APPS_ENABLED': '1', 'HOSTTYPE': 'x86_64', 'WSLENV': ''}, 'shell': False}
+[2.990661] (-) TimerEvent: {}
+[3.095795] (-) TimerEvent: {}
+[3.200967] (-) TimerEvent: {}
+[3.306090] (-) TimerEvent: {}
+[3.411133] (-) TimerEvent: {}
+[3.516164] (-) TimerEvent: {}
+[3.620490] (-) TimerEvent: {}
+[3.724420] (-) TimerEvent: {}
+[3.829543] (-) TimerEvent: {}
+[3.934676] (-) TimerEvent: {}
+[4.021110] (turtle_shapes) StdoutLine: {'line': b'running develop\n'}
+[4.052771] (-) TimerEvent: {}
+[4.157781] (-) TimerEvent: {}
+[4.262894] (-) TimerEvent: {}
+[4.366276] (-) TimerEvent: {}
+[4.471365] (-) TimerEvent: {}
+[4.576672] (-) TimerEvent: {}
+[4.678624] (-) TimerEvent: {}
+[4.782793] (-) TimerEvent: {}
+[4.866764] (turtle_shapes) StdoutLine: {'line': b'running egg_info\n'}
+[4.868058] (turtle_shapes) StdoutLine: {'line': b'writing turtle_shapes.egg-info/PKG-INFO\n'}
+[4.870042] (turtle_shapes) StdoutLine: {'line': b'writing dependency_links to turtle_shapes.egg-info/dependency_links.txt\n'}
+[4.871454] (turtle_shapes) StdoutLine: {'line': b'writing entry points to turtle_shapes.egg-info/entry_points.txt\n'}
+[4.872610] (turtle_shapes) StdoutLine: {'line': b'writing requirements to turtle_shapes.egg-info/requires.txt\n'}
+[4.873781] (turtle_shapes) StdoutLine: {'line': b'writing top-level names to turtle_shapes.egg-info/top_level.txt\n'}
+[4.881266] (turtle_shapes) StdoutLine: {'line': b"reading manifest file 'turtle_shapes.egg-info/SOURCES.txt'\n"}
+[4.883156] (-) TimerEvent: {}
+[4.886937] (turtle_shapes) StdoutLine: {'line': b"writing manifest file 'turtle_shapes.egg-info/SOURCES.txt'\n"}
+[4.893574] (turtle_shapes) StdoutLine: {'line': b'running build_ext\n'}
+[4.895084] (turtle_shapes) StdoutLine: {'line': b'Creating /home/andrew/ros2_ws/install/turtle_shapes/lib/python3.10/site-packages/turtle-shapes.egg-link (link to .)\n'}
+[4.899942] (turtle_shapes) StdoutLine: {'line': b'Installing interactive_turtle script to /home/andrew/ros2_ws/install/turtle_shapes/lib/turtle_shapes\n'}
+[4.901809] (turtle_shapes) StdoutLine: {'line': b'Installing shape_node script to /home/andrew/ros2_ws/install/turtle_shapes/lib/turtle_shapes\n'}
+[4.903989] (turtle_shapes) StdoutLine: {'line': b'Installing turtle_commander script to /home/andrew/ros2_ws/install/turtle_shapes/lib/turtle_shapes\n'}
+[4.904702] (turtle_shapes) StdoutLine: {'line': b'\n'}
+[4.905359] (turtle_shapes) StdoutLine: {'line': b'Installed /home/andrew/ros2_ws/build/turtle_shapes\n'}
+[4.906050] (turtle_shapes) StdoutLine: {'line': b'running symlink_data\n'}
+[4.986734] (-) TimerEvent: {}
+[5.023372] (turtle_shapes) CommandEnded: {'returncode': 0}
+[5.090608] (-) TimerEvent: {}
+[5.106049] (turtle_shapes) JobEnded: {'identifier': 'turtle_shapes', 'rc': 0}
+[5.115294] (-) EventReactorShutdown: {}
