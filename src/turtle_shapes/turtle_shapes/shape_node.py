@@ -12,7 +12,7 @@ class ShapePublisherNode(Node):
         self.get_logger().info("\n--- Turtle Shapes Menu ---")
         self.get_logger().info("1 = Arrow")
         self.get_logger().info("2 = Star")
-        self.get_logger().info("3 = Cloud")
+        self.get_logger().info("3 = hot airballoon")
         self.get_logger().info("4 = Clear Screen")
         self.get_logger().info("0 = Stop Turtle")
         self.get_logger().info("--------------------------")
